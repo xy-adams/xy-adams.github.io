@@ -5,25 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ config.SITE_TITLE }}{% endblock %}</title>
     <meta name="description" content="{{ config.SITE_DESCRIPTION }}">
-    
-    <!-- CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- 图标 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- 样式 -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
+    <!-- 背景光晕 -->
+    <div class="bg-orbs" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+    </div>
+
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="{{ url_for('index') }}">{{ config.AUTHOR_NAME }}</a>
+                <a href="#home"><span class="logo-mark">XY</span>{{ config.AUTHOR_NAME }}</a>
             </div>
             <div class="nav-menu">
-                <a href="{{ url_for('index') }}" class="nav-link">首页</a>
-                <a href="{{ url_for('about') }}" class="nav-link">关于我</a>
-                <a href="{{ url_for('projects') }}" class="nav-link">项目</a>
-                <a href="{{ url_for('contact') }}" class="nav-link">联系我</a>
+                <a href="#home" class="nav-link active">首页</a>
+                <a href="#about" class="nav-link">关于</a>
+                <a href="#skills" class="nav-link">技能</a>
+                <a href="#projects" class="nav-link">项目</a>
+                <a href="#experience" class="nav-link">经历</a>
+                <a href="#contact" class="nav-link">联系</a>
             </div>
-            <div class="hamburger">
+            <a href="{{ config.GITHUB_URL }}" target="_blank" rel="noopener noreferrer" class="nav-cta">
+                <i class="fab fa-github"></i><span>GitHub</span>
+            </a>
+            <div class="hamburger" aria-label="菜单" role="button" tabindex="0">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -40,18 +60,25 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 {{ config.AUTHOR_NAME }}. 保留所有权利。</p>
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">{{ config.AUTHOR_NAME }}</a>
+                    <p>{{ config.AUTHOR_TITLE }} · 用代码创造价值</p>
+                </div>
                 <div class="social-links">
-                    <a href="{{ config.GITHUB_URL }}" target="_blank" rel="noopener noreferrer">
+                    <a href="{{ config.GITHUB_URL }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="{{ config.LINKEDIN_URL }}" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="{{ config.LINKEDIN_URL }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="mailto:{{ config.AUTHOR_EMAIL }}">
+                    <a href="mailto:{{ config.AUTHOR_EMAIL }}" aria-label="邮箱">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 {{ config.AUTHOR_NAME }}. 保留所有权利。</p>
+                <p>使用 <i class="fas fa-heart"></i> 与 Flask 构建</p>
             </div>
         </div>
     </footer>
